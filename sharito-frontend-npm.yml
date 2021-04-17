@@ -1,0 +1,5 @@
+apps:
+- name: sharito-frontend
+  script: npm
+  args: run serve
+  watch: true

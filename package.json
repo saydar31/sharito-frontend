@@ -1,0 +1,80 @@
+{
+  "name": "sharito-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "local": "vue-cli-service serve --port 80 --mode local",
+    "demo": "vue-cli-service build --port 80 --mode demo",
+    "serve": "vue-cli-service serve --port 80",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "babel-polyfill": "^6.26.0",
+    "core-js": "^3.6.5",
+    "jquery": "^3.4.1",
+    "js-cookie": "^2.2.1",
+    "moment": "^2.29.1",
+    "sass-resources-loader": "^2.0.3",
+    "v-autocomplete": "^1.8.2",
+    "v-calendar": "^2.1.5",
+    "vee-validate": "^2.2.7",
+    "vue": "^2.6.11",
+    "vue-autosuggest": "^2.2.0",
+    "vue-browser-detect-plugin": "^0.1.13",
+    "vue-expandable-image": "^0.1.0",
+    "vue-loader": "^15.9.3",
+    "vue-meta": "^2.4.0",
+    "vue-multilanguage": "^4.0.10",
+    "vue-router": "^3.3.4",
+    "vue-scroll-loader": "^2.2.0",
+    "vue-slick-carousel": "^1.0.6",
+    "vue-tel-input": "^4.4.0",
+    "vue-video": "^0.1.7",
+    "vuetify": "^1.5.12",
+    "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.4"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.4",
+    "babel-eslint": "^10.1.0",
+    "css-loader": "^4.2.1",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "node-sass": "^4.14.1",
+    "resolve-url-loader": "^3.1.1",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
+    "vue-svg-inline-loader": "^1.2.15",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-scss": "^1.4.0",
+    "webpack": "^4.0.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.1.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 8"
+  ]
+}
