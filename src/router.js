@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '@/store';
-import constants from '@/constants';
+import NotFound from "@/views/NotFound";
 
 
 
@@ -10,7 +9,18 @@ Vue.use(Router);
 export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
-    routes: []
+    routes: [
+        {
+            path: '/404',
+            component: NotFound,
+            name: 'NotFound'
+        },
+        // Должно стоять последним
+        {
+            path: '/*',
+            redirect: '/404'
+        }
+    ]
 })
 
 

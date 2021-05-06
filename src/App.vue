@@ -33,7 +33,15 @@ export default {
 </script>
 
 <style>
-/*@import "css/style.css";*/
-/*@import "plugins/intl-tel-input/css/intlTelInput.css";*/
+@import "css/style.css";
+@import "css/meanmenu.min.css";
+@import "css/animate.css";
+@import "css/nivo-slider.css";
+@import "css/slick.css";
+@import "css/font-awesome.min.css";
+@import "css/jquery.fancybox.css";
+@import "css/bootstrap.min.css";
+@import "css/default.css";
+@import "css/responsive.css";
 </style>
 
