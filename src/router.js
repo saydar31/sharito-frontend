@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NotFound from "@/views/NotFound";
+import SignUp from "@/views/SignUp";
 
 
 
@@ -14,6 +15,11 @@ export default new Router({
             path: '/404',
             component: NotFound,
             name: 'NotFound'
+        },
+        {
+            path: '/signUp',
+            component: SignUp,
+            name: 'SignUp'
         },
         // Должно стоять последним
         {
