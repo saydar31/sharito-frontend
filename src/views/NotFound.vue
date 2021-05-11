@@ -9,7 +9,7 @@
         <div class="breadcrumb">
           <ul>
             <li><a href="index-2.html">Home</a></li>
-            <li class="active"><a href="404.html">404 Page</a></li>
+            <li class="active"><a href="#">404 Page</a></li>
           </ul>
         </div>
       </div>

@@ -50,7 +50,8 @@
                   <label class="control-label" for="email"><span class="require">*</span>Enter your email address
                     here...</label>
                   <div class="col-sm-10">
-                    <input v-model="email" type="email" class="form-control" id="email" placeholder="Enter your email address here...">
+                    <input v-model="email" type="email" class="form-control" id="email"
+                           placeholder="Enter your email address here...">
                   </div>
                 </div>
               </fieldset>
@@ -59,13 +60,15 @@
                 <div class="form-group">
                   <label class="control-label" for="pwd"><span class="require">*</span>Password:</label>
                   <div class="col-sm-10">
-                    <input v-model="password" type="password" class="form-control" id="pwd" placeholder="Password">
+                    <input @blur="checkPasswords" v-model="password" type="password" class="form-control" id="pwd"
+                           placeholder="Password">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="pwd-confirm"><span class="require">*</span>Confirm Password</label>
                   <div class="col-sm-10">
-                    <input v-model="passwordRepeat" type="password" class="form-control" id="pwd-confirm" placeholder="Confirm password">
+                    <input @blur="checkPasswords" v-model="passwordRepeat" type="password" class="form-control"
+                           id="pwd-confirm" placeholder="Confirm password">
                   </div>
                 </div>
               </fieldset>
@@ -124,6 +127,13 @@ export default {
       email: '',
       password: '',
       passwordRepeat: ''
+    }
+  },
+  methods: {
+    checkPasswords() {
+      if (this.password.length > 0 && this.passwordRepeat.length > 0 && this.password !== this.passwordRepeat) {
+        alert('ты это пароль проверь, а то не совпадают');
+      }
     }
   }
 }

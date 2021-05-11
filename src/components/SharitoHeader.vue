@@ -63,9 +63,9 @@
                     <a><i class="fa fa-cog"></i></a>
                     <ul class="ht-dropdown">
                       <h5>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="register.html">Register</a></li>
-                        <li><a href="account.html">Account</a></li>
+                        <li v-if="showLogin"><router-link :to="{path: '/login'}">Login</router-link></li>
+                        <li v-show="showLogin"><router-link :to="{name: 'SignUp'}">Register</router-link></li>
+                        <li v-if="showProfile"><router-link :to="{path: '/profile'}">Account</router-link></li>
                       </h5>
                     </ul>
                   </h3>
@@ -94,6 +94,14 @@ export default {
       }
     });
 
+  },
+  computed:{
+    showLogin(){
+      return !this.$store.getters.isAuthenticated;
+    },
+    showProfile(){
+      return !!this.$store.getters.isAuthenticated;
+    }
   }
 }
 </script>
