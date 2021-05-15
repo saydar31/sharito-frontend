@@ -37,37 +37,17 @@
     </div>
     <!-- Error 404 Area End -->
 
-    <footer class="off-white-bg">
-      <!-- Footer Top Start -->
-      <!-- Footer Bottom Start -->
-      <div class="footer-bottom off-white-bg2">
-        <div class="container">
-          <div class="footer-bottom-content">
-            <p class="copy-right-text">Copyright © <a href="#">Sharito</a> All Rights Reserved.</p>
-            <div class="footer-social-content">
-              <ul class="social-content-list">
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-wifi"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- Container End -->
-      </div>
-      <!-- Footer Bottom End -->
-    </footer>
+    <SharitoFooter/>
     <!-- Footer End -->
   </div>
 </template>
 
 <script>
 import SharitoHeader from "@/components/SharitoHeader";
+import SharitoFooter from "@/components/SharitoFooter";
 export default {
   name: "NotFound",
-  components: {SharitoHeader}
+  components: {SharitoFooter, SharitoHeader}
 }
 </script>
 

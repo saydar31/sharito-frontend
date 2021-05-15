@@ -63,9 +63,9 @@
                     <a><i class="fa fa-cog"></i></a>
                     <ul class="ht-dropdown">
                       <h5>
-                        <li v-if="showLogin"><router-link :to="{path: '/login'}">Login</router-link></li>
+                        <li v-if="showLogin"><router-link :to="{name: 'Login'}">Login</router-link></li>
                         <li v-show="showLogin"><router-link :to="{name: 'SignUp'}">Register</router-link></li>
-                        <li v-if="showProfile"><router-link :to="{path: '/profile'}">Account</router-link></li>
+                        <li v-if="showProfile"><router-link :to="{name: 'Profile'}">Account</router-link></li>
                       </h5>
                     </ul>
                   </h3>
