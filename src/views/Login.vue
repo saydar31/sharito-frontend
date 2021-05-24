@@ -8,8 +8,8 @@
       <div class="container">
         <div class="breadcrumb">
           <ul>
-            <li><a href="index-2.html">Home</a></li>
-            <li class="active"><a href="login.html">Login</a></li>
+            <li><router-link :to="{name: 'Index'}">Home</router-link></li>
+            <li class="active"><router-link :to="{name: 'Index'}">Login</router-link></li>
           </ul>
         </div>
       </div>
@@ -28,7 +28,7 @@
                 <p class="mtb-10"><strong>Register</strong></p>
                 <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep
                   track of the orders you have previously made</p>
-                <a class="customer-btn" href="register.html">continue</a>
+                <router-link class="customer-btn":to="{name: 'SignUp'}">continue</router-link>
               </div>
             </div>
           </div>

@@ -4,6 +4,8 @@ import NotFound from "@/views/NotFound";
 import SignUp from "@/views/SignUp";
 import Profile from "@/views/Profile";
 import Login from "@/views/Login";
+import NewItem from "@/views/NewItem";
+import Index from  '@/views/Index';
 
 
 Vue.use(Router);
@@ -16,6 +18,11 @@ export default new Router({
             path: '/404',
             component: NotFound,
             name: 'NotFound'
+        },
+        {
+            path: '/',
+            component: Index,
+            name: 'Index'
         },
         {
             path: '/signUp',
@@ -32,7 +39,11 @@ export default new Router({
             component: Login,
             name: 'Login'
         },
-        // Должно стоять последним
+        {
+            path: '/new-item',
+            component: NewItem,
+            name: 'NewItem'
+        },
         {
             path: '/*',
             redirect: '/404'
