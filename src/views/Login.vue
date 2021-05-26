@@ -28,7 +28,7 @@
                 <p class="mtb-10"><strong>Register</strong></p>
                 <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep
                   track of the orders you have previously made</p>
-                <router-link class="customer-btn":to="{name: 'SignUp'}">continue</router-link>
+                <router-link class="customer-btn" :to="{name: 'SignUp'}">continue</router-link>
               </div>
             </div>
           </div>
@@ -42,15 +42,15 @@
                 <form action="#">
                   <div class="form-group">
                     <label class="control-label">Enter your email address here...</label>
-                    <input type="text" name="email" placeholder="Enter your email address here..." id="input-email"
+                    <input v-model.trim="email" type="text" name="email" placeholder="Enter your email address here..." id="input-email"
                            class="form-control">
                   </div>
                   <div class="form-group">
                     <label class="control-label">Password</label>
-                    <input type="text" name="pass" placeholder="Password" id="input-password" class="form-control">
+                    <input v-model="password" type="text" name="pass" placeholder="Password" id="input-password" class="form-control">
                   </div>
-                  <p class="lost-password"><a href="forgot-password.html">Forgot password?</a></p>
-                  <input type="submit" value="Login" class="return-customer-btn">
+                  <p class="lost-password"><a href="#">Forgot password?</a></p>
+                  <button @click.prevent="signIn" :disabled="email.length === 0 || password.length === 0" class="return-customer-btn">Login</button>
                 </form>
               </div>
             </div>
@@ -74,7 +74,18 @@ import SharitoFooter from "@/components/SharitoFooter";
 
 export default {
   name: "Login",
-  components: {SharitoFooter, SharitoHeader}
+  components: {SharitoFooter, SharitoHeader},
+  data(){
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods:{
+    async signIn(){
+      await this.$store.dispatch('login', this.$data)
+    }
+  }
 }
 </script>
 

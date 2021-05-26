@@ -29,15 +29,15 @@
           <div v-for="product in products" class="single-product">
             <!-- Product Image Start -->
             <div class="pro-img">
-              <a href="product.html">
+              <router-link :to="{name: 'Product'}">
                 <img class="primary-img" :src="product.imageUrl" alt="single-product">
                 <img class="secondary-img" :src="product.imageUrl" alt="single-product">
-              </a>
+              </router-link>
             </div>
             <!-- Product Image End -->
             <!-- Product Content Start -->
             <div class="pro-content">
-              <h4><a href="product.html">{{ product.name }}</a></h4>
+              <h4><a href="#">{{ product.name }}</a></h4>
               <p>
                 <span class="price">${{ product.price }}.00</span>
               </p>

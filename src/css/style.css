@@ -3317,7 +3317,7 @@ legend {
     color: #fff;
 }
 
-.newsletter-btn:disabled {
+.newsletter-btn:disabled, .return-customer-btn:disabled {
     background: #5b697b;
     cursor: default;
 }

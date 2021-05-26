@@ -6,6 +6,7 @@ import Profile from "@/views/Profile";
 import Login from "@/views/Login";
 import NewItem from "@/views/NewItem";
 import Index from  '@/views/Index';
+import Product from "@/views/Product";
 
 
 Vue.use(Router);
@@ -44,6 +45,14 @@ export default new Router({
             component: NewItem,
             name: 'NewItem'
         },
+
+        {
+            path: '/product/:id',
+            component: Product,
+            name: 'Product',
+            props: true
+        },
+
         {
             path: '/*',
             redirect: '/404'

@@ -61,7 +61,7 @@
                 <div class="form-group">
                   <label class="control-label" for="productName"><span class="require">*</span>Название товара</label>
                   <div class="col-sm-10">
-                    <input v-model="name" type="text" class="form-control" id="productName"
+                    <input v-model.trim="name" type="text" class="form-control" id="productName"
                            placeholder="Название товара">
                   </div>
                 </div>
@@ -84,7 +84,7 @@
                 <div class="pull-right">Согласен на обработку данных <a href="#" class="agree"><b>Политика
                   Конфиденциальности</b></a>
                   <input v-model="agree" type="checkbox" name="agree" value="1"> &nbsp;
-                  <button @click.prevent="console.log('foo')" :disabled="!agree" type="submit" class="newsletter-btn">Добавить</button>
+                  <button @click.prevent="console.log('foo')" :disabled="!agree || !parseInt(price) || name.length === 0" type="submit" class="newsletter-btn">Добавить</button>
                 </div>
               </div>
             </form>
