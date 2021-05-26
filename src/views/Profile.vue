@@ -23,9 +23,9 @@
             <div class="row no-gutters align-items-center">
               <div class="col-lg-3 col-md-6">
                 <div class="d-single-info">
-                  <h4>Name</h4>
-                  <h4>Surname</h4>
-                  <h4>mail@mail.ru</h4>
+                  <h4>{{user.first_name}}</h4>
+                  <h4>{{ user.last_name }}</h4>
+                  <h4>{{ user.email }}</h4>
                 </div>
               </div>
             </div>
@@ -34,9 +34,9 @@
             <div class="col-lg-2">
               <!-- Nav tabs -->
               <ul class="nav flex-column dashboard-list" role="tablist">
-                <li><a data-toggle="tab" href="#orders">My Orders</a></li>
-                <li><a data-toggle="tab" href="#ordered_from_me">Ordered from me</a></li>
-                <li><a href="#" >logout</a></li>
+                <li><router-link  :to="{name: 'MyOrders'}" href="#">My Orders</router-link></li>
+                <li><router-link :to="{name: 'OrderedFromMe'}" >Ordered from me</router-link></li>
+                <li><a @click.prevent="logout" href="#" >logout</a></li>
               </ul>
             </div>
           </div>
@@ -64,6 +64,12 @@ export default {
 
   created() {
     this.user = this.$store.getters.authUser
+  },
+  methods:{
+    logout(){
+      this.$store.dispatch('logout');
+      this.$router.push({name: 'Login'})
+    }
   }
 }
 </script>

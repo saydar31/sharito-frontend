@@ -68,7 +68,8 @@
                 <div class="form-group">
                   <label class="control-label" for="productPrice"><span class="require">*</span>Цена в час</label>
                   <div class="col-sm-10">
-                    <input v-model="price" @keypress="onlyNumbers" type="text" class="form-control" id="productPrice" placeholder="Цена в час">
+                    <input v-model="price" @keypress="onlyNumbers" type="text" class="form-control" id="productPrice"
+                           placeholder="Цена в час">
                   </div>
                 </div>
                 <div class="form-group">
@@ -84,7 +85,10 @@
                 <div class="pull-right">Согласен на обработку данных <a href="#" class="agree"><b>Политика
                   Конфиденциальности</b></a>
                   <input v-model="agree" type="checkbox" name="agree" value="1"> &nbsp;
-                  <button @click.prevent="console.log('foo')" :disabled="!agree || !parseInt(price) || name.length === 0" type="submit" class="newsletter-btn">Добавить</button>
+                  <button @click.prevent="createNewProduct"
+                          :disabled="!agree || !parseInt(price) || name.length === 0" type="submit"
+                          class="newsletter-btn">Добавить
+                  </button>
                 </div>
               </div>
             </form>
@@ -108,6 +112,12 @@ import SharitoHeader from "@/components/SharitoHeader";
 import SharitoFooter from "@/components/SharitoFooter";
 import inputValidator from "@/mixins/inputValidator";
 
+const toBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
 export default {
   name: "NewItem",
   components: {SharitoFooter, SharitoHeader},
@@ -124,11 +134,11 @@ export default {
     }
   },
 
-  mounted(){
+  mounted() {
   },
 
   methods: {
-    addFileToList(event) {
+    async addFileToList(event) {
       let file = event.target.files[0];
       if (this.files.length < 5) {
         this.sizeError = false;
@@ -145,13 +155,27 @@ export default {
           return;
         }
         this.files.push(file);
-        this.fileUrls.push(URL.createObjectURL(file));
+        this.fileUrls.push(await toBase64(file));
       }
     }
     ,
     removeFile(index) {
       this.fileUrls.splice(index, 1);
       this.files.splice(index, 1);
+    },
+
+    async createNewProduct() {
+      let body = {
+        name: this.name,
+        per_hour: parseFloat(this.price),
+        description: this.description,
+        photos: this.fileUrls
+      }
+      let response = await this.$store.dispatch('addProduct', body);
+      if (response.success) {
+        let productId = response.data.product_id;
+        this.$router.push({name: 'Product', params: {id: productId}})
+      }
     }
   }
 }

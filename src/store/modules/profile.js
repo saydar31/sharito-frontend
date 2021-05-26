@@ -67,6 +67,40 @@ export default {
         async logout({commit, dispatch}) {
             commit('LOGOUT');
         },
+
+        async addProduct(context, body){
+            try {
+                let response = await rest.doPost(
+                    `/product`,
+                    body);
+                return {
+                    data: response,
+                    success: true
+                }
+            } catch (error) {
+                console.log(error);
+                return {
+                    data: error,
+                    success: false
+                }
+            }
+        },
+        async getProduct(context, data){
+            try {
+                let response = await rest.doGet(
+                    `/product/${data.id}`);
+                return {
+                    data: response,
+                    success: true
+                }
+            } catch (error) {
+                console.log(error);
+                return {
+                    data: error,
+                    success: false
+                }
+            }
+        }
     },
     mutations: {
         LOGIN_SUCCESS(state, user) {
@@ -93,6 +127,6 @@ export default {
         authUser: state => state.user,
         token: state => state.token,
         role: state => state.role,
-        isAuthenticated: state => state.user.id !== 0
+        isAuthenticated: state => state.token.length !== 0
     }
 }

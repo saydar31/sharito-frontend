@@ -30,20 +30,8 @@
           <div class="col-lg-5">
             <!-- Thumbnail Large Image start -->
             <div class="tab-content">
-              <div id="thumb1" class="tab-pane active">
-                <a data-fancybox="images" href="../img/products/1.jpg"><img src="../img/products/1.jpg"
-                                                                            alt="product-view"></a>
-              </div>
-              <div id="thumb2" class="tab-pane">
-                <a data-fancybox="images" href="../img/products/2.jpg"><img src="../img/products/2.jpg"
-                                                                            alt="product-view"></a>
-              </div>
-              <div id="thumb3" class="tab-pane">
-                <a data-fancybox="images" href="../img/products/3.jpg"><img src="../img/products/3.jpg"
-                                                                            alt="product-view"></a>
-              </div>
-              <div id="thumb4" class="tab-pane">
-                <a data-fancybox="images" href="../img/products/4.jpg"><img src="../img/products/4.jpg"
+              <div  v-for="(photo, index) in product.photos" :class="{'active':index === 0}"  class="tab-pane active">
+                <a data-fancybox="images" href="#"><img :src="photo"
                                                                             alt="product-view"></a>
               </div>
             </div>
@@ -52,11 +40,8 @@
             <!-- Thumbnail Image End -->
             <div class="product-thumbnail">
               <div class="thumb-menu nav">
-                <a class="active" data-toggle="tab" href="#thumb1"> <img src="../img/products/1.jpg"
+                <a v-for="(photo, index) in product.photos" :class="{'active':index === 0}" data-toggle="tab"> <img :src="photo"
                                                                          alt="product-thumbnail"></a>
-                <a data-toggle="tab" href="#thumb2"> <img src="../img/products/2.jpg" alt="product-thumbnail"></a>
-                <a data-toggle="tab" href="#thumb3"> <img src="../img/products/3.jpg" alt="product-thumbnail"></a>
-                <a data-toggle="tab" href="#thumb4"> <img src="../img/products/4.jpg" alt="product-thumbnail"></a>
               </div>
             </div>
             <!-- Thumbnail image end -->
@@ -65,16 +50,16 @@
           <!-- Thumbnail Description Start -->
           <div class="col-lg-7">
             <div class="thubnail-desc fix">
-              <h3 class="product-header">Products Name Here</h3>
+              <h3 class="product-header">{{product.name}}</h3>
 
               <div class="pro-price mb-10">
                 <p>
-                  <span class="price">${{ product.pricePerHour }}.00/hour</span>
+                  <span class="price">${{ product.per_hour }}/hour</span>
                 </p>
               </div>
               <div class="pro-ref mb-15">
                 <p><span class="in-stock">Leased by: </span><span class="sku"><a
-                    href="">{{ product.company.name }}</a></span></p>
+                    href="">{{ product.owner_id }}</a></span></p>
               </div>
               <!-- TODO СРОК -->
               <div class="box-quantity">
@@ -136,6 +121,14 @@ export default {
           name: 'foo'
         }
       }
+    }
+  },
+  async created() {
+    let id = this.$route.params.id;
+    let response = await this.$store.dispatch('getProduct', {id: id});
+    if (!!response.success){
+      this.product = response.data;
+    } else {
     }
   }
 }
