@@ -2049,6 +2049,10 @@ ul.ht-dropdown.dropdown-style-two li {
     width: 270px;
 }
 
+.table-content table td.product-time {
+    width: 270px;
+}
+
 .table-content table td.product-thumbnail {
     width: 100px;
 }
