@@ -188,7 +188,7 @@
                 </div>
                 <!-- Main Thumbnail Image End -->
                 <!-- Thumbnail Description Start -->
-                <div class="col-lg-7">
+                <div class="col-lg-6">
                     <div class="thubnail-desc fix">
                         <h3 class="product-header">Products Name Here</h3>
 
@@ -203,11 +203,18 @@
                                     href="">the company</a></span></p>
                         </div>
                         <!-- TODO СРОК -->
-                        <div class="box-quantity">
-                            <form action="#">
-                                <input class="number" id="numeric" placeholder="time">
+                        <div class="form-group row">
+                            <div class="form-group col-lg-5">
+                                <label class="control-label" for="datetimeFrom"><h6>Date from</h6></label>
+                                <input class="form-control" id="datetimeFrom" type="datetime-local">
+                            </div>
+                            <div class="form-group col-lg-5">
+                                <label class="control-label" for="datetimeTo"><h6>Date to</h6></label>
+                                <input class="form-control" id="datetimeTo" type="datetime-local">
+                            </div>
+                            <div class="form-group col-lg-5">
                                 <button class="add-cart">add to cart</button>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
