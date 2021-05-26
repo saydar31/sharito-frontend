@@ -7,8 +7,8 @@
       <div class="container">
         <div class="breadcrumb">
           <ul>
-            <li><a href="index-2.html">Home</a></li>
-            <li class="active"><a href="account.html">Account</a></li>
+            <li><router-link :to="{name: 'Index'}">Home</router-link></li>
+            <li class="active"><a href="#">Account</a></li>
           </ul>
         </div>
       </div>
@@ -36,7 +36,7 @@
               <ul class="nav flex-column dashboard-list" role="tablist">
                 <li><a data-toggle="tab" href="#orders">My Orders</a></li>
                 <li><a data-toggle="tab" href="#ordered_from_me">Ordered from me</a></li>
-                <li><a href="login.html" >logout</a></li>
+                <li><a href="#" >logout</a></li>
               </ul>
             </div>
           </div>
@@ -55,7 +55,16 @@ import SharitoHeader from "@/components/SharitoHeader";
 import SharitoFooter from "@/components/SharitoFooter";
 export default {
   name: "Profile",
-  components: {SharitoFooter, SharitoHeader}
+  components: {SharitoFooter, SharitoHeader},
+  data(){
+    return {
+      user: {}
+    }
+  },
+
+  created() {
+    this.user = this.$store.getters.authUser
+  }
 }
 </script>
 

@@ -25,7 +25,7 @@ export default {
                 let tokenData = await rest.doPost(
                     `/auth/login`,
                     {
-                        phone: user.login,
+                        login: user.email,
                         password: user.password
                     });
                 commit('LOGIN_SUCCESS', tokenData);
@@ -70,8 +70,8 @@ export default {
     },
     mutations: {
         LOGIN_SUCCESS(state, user) {
-            state.token = user.accessToken;
-            localStorage.setItem(constants.SESSION_STORAGE_TOKEN, user.accessToken);
+            state.token = user.token;
+            localStorage.setItem(constants.SESSION_STORAGE_TOKEN, user.token);
         },
 
         AUTH_ERROR(state, payload) {
