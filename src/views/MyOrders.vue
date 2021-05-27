@@ -43,16 +43,16 @@
                     <td class="product-thumbnail">
                       <a v-if="photoIsPresent(order.product)" href="#"><img :src="getPhoto(order.product)"
                                                                             alt="cart-image"/></a>
-                      <a v-else href="#"><img src="../img/products/1.jpg" alt="cart-image"/></a>
+                      <a v-else href="#"><img src="https://opt-1333620.ssl.1c-bitrix-cdn.ru/upload/resize_cache/iblock/7b8/400_400_140cd750bba9870f18aada2478b24840a/7b88b009cf0bb6d8edc6684cbf02076a.jpeg?155255126021537" alt="cart-image"/></a>
                     </td>
                     <td class="product-name"><a href="#">{{ order.product.name }}</a></td>
                     <td class="product-price"><span class="amount">${{ order.product.per_hour }}/hour</span></td>
                     <td class="product-name">
-                      <span class="amount">From</span>
-                      <span class="amount">{{ order.from }}</span>
+                      <span class="amount">From </span>
+                      <span class="amount">{{ order.order_start }}</span>
                       <br>
-                      <span class="amount">&zwj; To</span>
-                      <span class="amount">{{ order.to }}</span>
+                      <span class="amount">&zwj; To </span>
+                      <span class="amount">{{ order.order_end }}</span>
                     </td>
                     <td class="product-subtotal">${{ order.price }}</td>
                   </tr>
@@ -85,7 +85,35 @@ export default {
 
   data() {
     return {
-      orders: []
+      orders: [
+        {
+          product: {
+            name: 'foo',
+            per_hour: '12.0'
+          },
+          order_start: '27.05.2021 12:00',
+          order_end: '28.05.2021 12:00',
+          price: '12000'
+        },
+        {
+          product: {
+            name: 'foo',
+            per_hour: '12.0'
+          },
+          order_start: '27.05.2021 12:00',
+          order_end: '28.05.2021 12:00',
+          price: '12000'
+        },
+        {
+          product: {
+            name: 'foo',
+            per_hour: '12.0'
+          },
+          order_start: '27.05.2021 12:00',
+          order_end: '28.05.2021 12:00',
+          price: '12000'
+        }
+      ]
     }
   },
 
@@ -95,10 +123,11 @@ export default {
 
   methods: {
     async getOrders() {
-      let response = await this.$store.dispatch('getOrders', {me: true});
-      if (response.success) {
-        this.orders = response.data;
-      }
+      // let response = await this.$store.dispatch('getOrders', {me: true});
+      // if (response.success) {
+      //   this.orders = response.data;
+      // }
+
     }
   }
 }
