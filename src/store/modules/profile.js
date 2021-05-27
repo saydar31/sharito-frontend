@@ -144,11 +144,7 @@ export default {
         async createOrder(context, data){
             try {
                 let response = await rest.doPost(
-                    `/product/${data.id}/order`,
-                    {
-                        from: data.from,
-                        to: data.to
-                    });
+                    `/product/${data.id}/order?from=${data.from}&to=${data.to}`);
                 return {
                     data: response,
                     success: true

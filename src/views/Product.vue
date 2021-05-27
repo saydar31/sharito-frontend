@@ -145,9 +145,13 @@ export default {
   },
   methods: {
     async addToCart(){
+      let from  = this.from.toString().replace('T', ' ');
+      from = from.substr(0, from.length - 2) + '00'
+      let to  = this.to.toString().replace('T', ' ');
+      to = to.substr(0, to.length - 2) + '00';
       let response = await this.$store.dispatch('createOrder', {
-        from: this.from,
-        to: this.to
+        from: from,
+        to: to
       });
       if (response.success){
         this.$router.push({name: 'MyOrders'});
