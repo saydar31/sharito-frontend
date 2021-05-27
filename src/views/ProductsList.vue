@@ -66,7 +66,7 @@
                       <p>
                         <span class="price">${{ product.per_hour }}/час</span>
                       </p>
-                      <p>{{product.description}}</p>
+                      <p>{{ product.description }}</p>
 
                     </div>
                     <!-- Product Content End -->
@@ -82,9 +82,11 @@
             <!--TODO ПАГИНАЦИЯ -->
             <div class="pagination-box fix">
               <ul class="blog-pagination ">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                <li v-if="currentPage !== 1"><a href="#"><i class="fa fa-angle-eft"></i></a></li>
+                <li v-if="currentPage !== 1"><a href="#">{{ currentPage - 1 }}</a></li>
+                <li class="active"><a href="#">{{ currentPage }}</a></li>
+                <li v-if="(currentPage + 1) * 10 < totalCount"><a href="#">{{ currentPage + 1 }}</a></li>
+                <li v-if="currentPage * 10 < totalCount"><a href="#"><i class="fa fa-angle-right"></i></a></li>
               </ul>
             </div>
             <!--Breadcrumb and Page Show End -->
@@ -110,13 +112,15 @@ export default {
   components: {SharitoFooter, SharitoHeader},
   data() {
     return {
-      products: []
+      products: [],
+      currentPage: 1,
+      totalCount: 10
     }
   },
 
-  async created(){
-    let response = await this.$store.dispatch('getProducts',{page: 1});
-      this.products = response.data;
+  async created() {
+    let response = await this.$store.dispatch('getProducts', {page: 1});
+    this.products = response.data;
   },
 
   methods: {

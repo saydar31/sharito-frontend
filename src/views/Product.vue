@@ -59,7 +59,7 @@
               </div>
               <div class="pro-ref mb-15">
                 <p><span class="in-stock">Leased by: </span><span class="sku"><a
-                    href="">{{ product.owner_id }}</a></span></p>
+                    href="">{{ user.first_name + ' ' + user.last_name}}</a></span></p>
               </div>
               <!-- TODO СРОК -->
               <div class="box-quantity">
@@ -120,6 +120,9 @@ export default {
         company: {
           name: 'foo'
         }
+      },
+      user: {
+
       }
     }
   },
@@ -127,7 +130,8 @@ export default {
     let id = this.$route.params.id;
     let response = await this.$store.dispatch('getProduct', {id: id});
     if (!!response.success){
-      this.product = response.data;
+      this.product = response.data.product;
+      this.user = response.data.user;
     } else {
     }
   }
