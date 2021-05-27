@@ -1,14 +1,16 @@
 <template>
   <div class="wrapper">
     <!-- Header Area Start -->
-   <SharitoHeader/>
+    <SharitoHeader/>
     <!-- Header Area End -->
     <!-- Breadcrumb Start -->
     <div class="breadcrumb-area pt-60 pb-55 pt-sm-30 pb-sm-20">
       <div class="container">
         <div class="breadcrumb">
           <ul>
-            <li><router-link :to="{name: 'Index'}">Home</router-link></li>
+            <li>
+              <router-link :to="{name: 'Index'}">Home</router-link>
+            </li>
             <li class="active"><a href="#">Ordered from me</a></li>
           </ul>
         </div>
@@ -39,18 +41,19 @@
                   <tbody>
                   <tr v-for="order in orders">
                     <td class="product-thumbnail">
-                      <a href="#"><img src="../img/products/1.jpg" alt="cart-image"/></a>
+                      <a v-if="photoIsPresent(order.product)" href="#"><img :src="getPhoto(order.product)" alt="cart-image"/></a>
+                      <a v-else href="#"><img src="../img/products/1.jpg" alt="cart-image"/></a>
                     </td>
-                    <td class="product-name"><a href="#">Products Name Here</a></td>
-                    <td class="product-price"><span class="amount">£165.00/hour</span></td>
+                    <td class="product-name"><a href="#">{{ order.product.name }}</a></td>
+                    <td class="product-price"><span class="amount">${{ order.per_hour }}/hour</span></td>
                     <td class="product-name">
                       <span class="amount">From</span>
-                      <span class="amount">20.20.2020 10:20</span>
+                      <span class="amount">{{ order.from }}</span>
                       <br>
                       <span class="amount">&zwj; To</span>
-                      <span class="amount">20.20.2020 20:20</span>
+                      <span class="amount">{{ order.to }}</span>
                     </td>
-                    <td class="product-subtotal">£1650.00</td>
+                    <td class="product-subtotal">${{ order.price }}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -72,12 +75,28 @@
 <script>
 import SharitoFooter from "@/components/SharitoFooter";
 import SharitoHeader from "@/components/SharitoHeader";
+import formater from "@/mixins/formater";
+
 export default {
   name: "OrderedFromMe",
   components: {SharitoHeader, SharitoFooter},
-  data(){
+  mixins: [formater],
+  data() {
     return {
-      orders :[]
+      orders: []
+    }
+  },
+
+  created() {
+    this.getOrders();
+  },
+
+  methods: {
+    async getOrders() {
+      let response = await this.$store.dispatch('getOrders', {me: false});
+      if (response.success) {
+        this.orders = response.data;
+      }
     }
   }
 }
