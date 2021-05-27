@@ -106,10 +106,12 @@
 <script>
 import SharitoHeader from "@/components/SharitoHeader";
 import SharitoFooter from "@/components/SharitoFooter";
+import formater from '@/mixins/formater';
 
 export default {
   name: "ProductsList",
   components: {SharitoFooter, SharitoHeader},
+  mixins: [formater],
   data() {
     return {
       products: [],
@@ -120,18 +122,10 @@ export default {
 
   async created() {
     let response = await this.$store.dispatch('getProducts', {page: 1});
-    this.products = response.data;
+    this.products = response.data.products;
+    this.totalCount = response.count;
   },
 
-  methods: {
-    getPhoto(product) {
-      if (!product.photos || product.photos.length === 0) {
-        return '../img/slider/3.jpg';
-      } else {
-        return product.photos[0];
-      }
-    }
-  }
 }
 </script>
 

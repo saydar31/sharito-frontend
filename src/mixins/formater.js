@@ -19,5 +19,12 @@ export default {
             return [orderDate.getDate(), orderDate.getMonth() + 1, orderDate.getFullYear()]
                 .map(n => n < 10 ? `0${n}` : `${n}`).join('.');
         },
+        getPhoto(product) {
+            if (!product.photos || product.photos.length === 0) {
+                return '../img/slider/3.jpg';
+            } else {
+                return product.photos[0];
+            }
+        }
     }
 }

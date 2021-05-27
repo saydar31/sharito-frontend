@@ -30,8 +30,8 @@
             <!-- Product Image Start -->
             <div class="pro-img">
               <router-link :to="{name: 'Product'}">
-                <img class="primary-img" :src="product.imageUrl" alt="single-product">
-                <img class="secondary-img" :src="product.imageUrl" alt="single-product">
+                <img style="width: 270px; height: 210px" class="primary-img" :src="getPhoto(product)" alt="single-product">
+                <img style="width: 270px; height: 210px" class="secondary-img" :src="getPhoto(product)" alt="single-product">
               </router-link>
             </div>
             <!-- Product Image End -->
@@ -39,7 +39,7 @@
             <div class="pro-content">
               <h4><a href="#">{{ product.name }}</a></h4>
               <p>
-                <span class="price">${{ product.price }}.00</span>
+                <span class="price">${{ product.per_hour }}.00</span>
               </p>
             </div>
             <!-- Product Content End -->
@@ -122,16 +122,22 @@
 <script>
 import SharitoHeader from "@/components/SharitoHeader";
 import SharitoFooter from "@/components/SharitoFooter";
+import formater from "@/mixins/formater";
+
 export default {
   name: "Index",
   components: {SharitoFooter, SharitoHeader},
-  data(){
+
+  mixins: [formater],
+
+  data() {
     return {
       products: []
     }
   },
   async created() {
-
+    let response = await this.$store.dispatch('getProducts', {page: 1});
+    this.products = response.data.products;
   }
 }
 </script>
