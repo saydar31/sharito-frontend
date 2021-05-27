@@ -25,6 +25,9 @@ export default {
             } else {
                 return product.photos[0];
             }
+        },
+        photoIsPresent(product){
+            return !!product.photos && product.photos.length > 0
         }
     }
 }

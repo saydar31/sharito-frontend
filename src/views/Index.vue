@@ -19,7 +19,7 @@
       <div class="container">
         <div class="row">
           <div class="group-title w-100 p-3">
-            <h2>Recommendations</h2>
+            <h2>Recommendations</h2> <router-link :to="{name:'ProductList'}">more</router-link>
           </div>
         </div>
         <!-- Best Product Activation Start -->
@@ -30,8 +30,8 @@
             <!-- Product Image Start -->
             <div class="pro-img">
               <router-link :to="{name: 'Product', params: {id: product.id}}">
-                <img style="width: 270px; height: 210px" class="primary-img" :src="getPhoto(product)" alt="single-product">
-                <img style="width: 270px; height: 210px" class="secondary-img" :src="getPhoto(product)" alt="single-product">
+                <img v-if="photoIsPresent(product)" style="width: 270px; height: 210px" class="primary-img" :src="getPhoto(product)" alt="single-product">
+                <img v-else style="width: 270px; height: 210px" class="primary-img" src="../img/products/1.jpg" alt="single-product">
               </router-link>
             </div>
             <!-- Product Image End -->
@@ -138,6 +138,9 @@ export default {
   async created() {
     let response = await this.$store.dispatch('getProducts', {page: 1});
     this.products = response.data.products;
+  },
+  methods: {
+
   }
 }
 </script>

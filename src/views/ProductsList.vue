@@ -54,14 +54,15 @@
                     <!-- Product Image Start -->
                     <div class="pro-img">
                       <router-link :to="{name: 'Product', params: {id: product.id}}">
-                        <img class="primary-img" :src="getPhoto(product)" alt="single-product">
+                        <img v-if="photoIsPresent(product)" class="primary-img" :src="getPhoto(product)" alt="single-product">
+                        <img v-else class="primary-img" src="../img/products/1.jpg" alt="single-product">
                       </router-link>
                     </div>
                     <!-- Product Image End -->
                     <!-- Product Content Start -->
                     <div class="pro-content">
                       <h4>
-                        <router-link :to="{name: 'Product', params: {id: product.id}}">Products Name Here</router-link>
+                        <router-link :to="{name: 'Product', params: {id: product.id}}">{{product.name}}</router-link>
                       </h4>
                       <p>
                         <span class="price">${{ product.per_hour }}/час</span>
