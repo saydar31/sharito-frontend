@@ -8,8 +8,8 @@
       <div class="container">
         <div class="breadcrumb">
           <ul>
-            <li><a href="index-2.html">Home</a></li>
-            <li class="active"><a href="ordered_from_me.html">Ordered from me</a></li>
+            <li><router-link :to="{name: 'Index'}">Home</router-link></li>
+            <li class="active"><a href="#">Ordered from me</a></li>
           </ul>
         </div>
       </div>

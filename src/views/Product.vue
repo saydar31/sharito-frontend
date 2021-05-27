@@ -62,12 +62,18 @@
                     href="">{{ user.first_name + ' ' + user.last_name}}</a></span></p>
               </div>
               <!-- TODO СРОК -->
-              <div class="box-quantity">
-                <form action="#">
-                  <v-date-picker></v-date-picker>
-                  <input class="number" id="numeric" placeholder="time">
-                  <button class="add-cart">add to cart</button>
-                </form>
+              <div class="form-group row">
+                <div class="form-group col-lg-5">
+                  <label class="control-label" for="datetimeFrom"><h6>Date from</h6></label>
+                  <input v-model="from" class="form-control" id="datetimeFrom" type="datetime-local">
+                </div>
+                <div class="form-group col-lg-5">
+                  <label class="control-label" for="datetimeTo"><h6>Date to</h6></label>
+                  <input v-model="to" class="form-control" id="datetimeTo" type="datetime-local">
+                </div>
+                <div class="form-group col-lg-5">
+                  <button @click="addToCart()" class="add-cart">add to cart</button>
+                </div>
               </div>
             </div>
           </div>
@@ -123,7 +129,9 @@ export default {
       },
       user: {
 
-      }
+      },
+      from:'',
+      to: ''
     }
   },
   async created() {
@@ -133,6 +141,17 @@ export default {
       this.product = response.data.product;
       this.user = response.data.user;
     } else {
+    }
+  },
+  methods: {
+    async addToCart(){
+      let response = await this.$store.dispatch('createOrder', {
+        from: this.from,
+        to: this.to
+      });
+      if (response.success){
+        this.$router.push({name: 'MyOrders'});
+      }
     }
   }
 }

@@ -9,6 +9,8 @@ import NewItem from "@/views/NewItem";
 import Index from '@/views/Index';
 import Product from "@/views/Product";
 import ProductsList from "@/views/ProductsList";
+import MyOrders from "@/views/MyOrders";
+import OrderedFromMe from "@/views/OrderedFromMe";
 
 
 Vue.use(Router);
@@ -90,6 +92,18 @@ export default new Router({
             path: '/products',
             component: ProductsList,
             name: 'ProductList'
+        },
+
+        {
+            path: '/my-orders',
+            component: MyOrders,
+            name: 'MyOrders'
+        },
+
+        {
+            path: '/ordered-from-me',
+            component: OrderedFromMe,
+            name: 'OrderedFromMe'
         },
 
         {

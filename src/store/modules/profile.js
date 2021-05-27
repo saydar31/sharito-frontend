@@ -140,6 +140,26 @@ export default {
                     success: false
                 }
             }
+        },
+        async createOrder(context, data){
+            try {
+                let response = await rest.doPost(
+                    `/product/${data.id}/order`,
+                    {
+                        from: data.from,
+                        to: data.to
+                    });
+                return {
+                    data: response,
+                    success: true
+                }
+            } catch (error) {
+                console.log(error);
+                return {
+                    data: error,
+                    success: false
+                }
+            }
         }
     },
     mutations: {
