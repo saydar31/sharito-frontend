@@ -30,9 +30,8 @@
           <div class="col-lg-5">
             <!-- Thumbnail Large Image start -->
             <div class="tab-content">
-              <div  v-for="(photo, index) in product.photos" :class="{'active':index === 0}"  class="tab-pane active">
-                <a data-fancybox="images" href="#"><img :src="photo"
-                                                                            alt="product-view"></a>
+              <div  v-for="(photo, index) in product.photos" :class="{'active':index === 0}"  class="tab-pane">
+                <a data-fancybox="images" href="#"><img :src="photo" alt="product-view"></a>
               </div>
             </div>
             <!-- Thumbnail Large Image End -->
