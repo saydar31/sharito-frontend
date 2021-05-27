@@ -76,7 +76,7 @@
               <div class="buttons newsletter-input">
                 <div class="pull-right">I have read and agree to the <a href="#" class="agree"><b>Privacy Policy</b></a>
                   <input type="checkbox" name="agree" value="1"> &nbsp;
-                  <input type="submit" value="Continue" class="newsletter-btn">
+                  <button @click="signUp" class="newsletter-btn">Continue</button>
                 </div>
               </div>
             </form>
@@ -113,6 +113,21 @@ export default {
     checkPasswords() {
       if (this.password.length > 0 && this.passwordRepeat.length > 0 && this.password !== this.passwordRepeat) {
         alert('ты это пароль проверь, а то не совпадают');
+      }
+    },
+    async signUp() {
+      let body = {
+        "login": this.email,
+        "first_name": this.firstName,
+        "last_name": this.lastName,
+        "email": this.email,
+        "password": this.password
+      };
+      let response = await this.$store.dispatch('signUp',body);
+      if (response.success){
+        this.$router.push({name:'Login'});
+      } else {
+        alert('пользователь с такой почтой уже существует в системе')
       }
     }
   }

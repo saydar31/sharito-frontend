@@ -36,6 +36,7 @@
               <ul class="nav flex-column dashboard-list" role="tablist">
                 <li><router-link  :to="{name: 'MyOrders'}" href="#">My Orders</router-link></li>
                 <li><router-link :to="{name: 'OrderedFromMe'}" >Ordered from me</router-link></li>
+                <li><router-link :to="{name: 'NewItem'}" >New product</router-link></li>
                 <li><a @click.prevent="logout" href="#" >logout</a></li>
               </ul>
             </div>

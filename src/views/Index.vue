@@ -29,7 +29,7 @@
           <div v-for="product in products" class="single-product">
             <!-- Product Image Start -->
             <div class="pro-img">
-              <router-link :to="{name: 'Product'}">
+              <router-link :to="{name: 'Product', params: {id: product.id}}">
                 <img style="width: 270px; height: 210px" class="primary-img" :src="getPhoto(product)" alt="single-product">
                 <img style="width: 270px; height: 210px" class="secondary-img" :src="getPhoto(product)" alt="single-product">
               </router-link>
@@ -37,7 +37,7 @@
             <!-- Product Image End -->
             <!-- Product Content Start -->
             <div class="pro-content">
-              <h4><a href="#">{{ product.name }}</a></h4>
+              <h4><router-link :to="{name: 'Product', params: {id: product.id}}" href="#">{{ product.name }}</router-link></h4>
               <p>
                 <span class="price">${{ product.per_hour }}.00</span>
               </p>

@@ -42,6 +42,29 @@ export default {
                 router.push({name: 'Index'});
             }
         },
+        async signUp({commit, dispatch, getters}, user) {
+            console.log(user);
+            try {
+                let data = await rest.doPost(
+                    `/auth/register`,
+                    {
+                        login: user.email,
+                        password: user.password
+                    });
+                return {
+                    success: true,
+                    data: data
+                }
+            } catch (error) {
+                console.log(error);
+                commit('AUTH_ERROR');
+                return {
+                    success: false,
+                    data: error
+                };
+            }
+        },
+
         redirectAfterLogin({context, getters}) {
             let redirectTo = sessionStorage.getItem(constants.SESSION_STORAGE_REDIRECT);
             if (redirectTo && redirectTo.length > 0) {
