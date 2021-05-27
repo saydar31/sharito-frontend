@@ -7,6 +7,7 @@ import Login from "@/views/Login";
 import NewItem from "@/views/NewItem";
 import Index from  '@/views/Index';
 import Product from "@/views/Product";
+import ProductsList from "@/views/ProductsList";
 
 
 Vue.use(Router);
@@ -51,6 +52,12 @@ export default new Router({
             component: Product,
             name: 'Product',
             props: true
+        },
+
+        {
+            path: '/products',
+            component: ProductsList,
+            name: 'ProductList'
         },
 
         {

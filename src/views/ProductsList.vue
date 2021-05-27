@@ -8,7 +8,9 @@
       <div class="container">
         <div class="breadcrumb">
           <ul>
-            <li><router-link :to="{name: 'Index'}" href="index-2.html">Home</router-link></li>
+            <li>
+              <router-link :to="{name: 'Index'}" href="index-2.html">Home</router-link>
+            </li>
             <li class="active"><a href="#">Shop</a></li>
           </ul>
         </div>
@@ -30,7 +32,6 @@
             <div class="grid-list-top border-default universal-padding fix mb-30">
               <div class="grid-list-view f-left">
                 <ul class="list-inline nav">
-                  <li><a data-toggle="tab" href="#grid-view"><i class="fa fa-th"></i></a></li>
                   <li><a class="active" data-toggle="tab" href="#list-view"><i class="fa fa-list-ul"></i></a>
                   </li>
                   <li><span class="grid-item-list"> Items 1-12 of 13</span></li>
@@ -44,59 +45,28 @@
               <div class="tab-content fix">
 
                 <!-- TODO СЕТКА №1 -->
-                <div id="grid-view" class="tab-pane ">
-                  <div class="row">
-
-                    <!-- TODO ДАННЫЕ ТОВАРА -->
-                    <!-- Single Product Start -->
-                    <div class="col-lg-4 col-sm-6">
-                      <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                          <a href="product.html">
-                            <img class="primary-img" src="img/products/1.jpg"
-                                 alt="single-product">
-                            <img class="secondary-img" src="img/products/2.jpg"
-                                 alt="single-product">
-                          </a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                          <h4><a href="product.html">Products Name Here</a></h4>
-                          <p>
-                            <span class="price">$30.00/час</span>
-                          </p>
-                        </div>
-                        <!-- Product Content End -->
-                      </div>
-                    </div>
-                    <!-- Single Product End -->
-                  </div>
-                </div>
                 <!-- #grid view End -->
                 <!-- TODO СЕТКА №2 -->
                 <div id="list-view" class="tab-pane active">
                   <!-- Single Product Start -->
                   <!-- TODO ДАННЫЕ ТОВАРА -->
-                  <div class="single-product">
+                  <div v-for="product in products" class="single-product">
                     <!-- Product Image Start -->
                     <div class="pro-img">
-                      <a href="product.html">
-                        <img class="primary-img" src="img/products/1.jpg" alt="single-product">
-                        <img class="secondary-img" src="img/products/2.jpg" alt="single-product">
-                      </a>
+                      <router-link :to="{name: 'Product', params: {id: product.id}}">
+                        <img class="primary-img" :src="getPhoto(product)" alt="single-product">
+                      </router-link>
                     </div>
                     <!-- Product Image End -->
                     <!-- Product Content Start -->
                     <div class="pro-content">
-                      <h4><a href="product.html">Products Name Here</a></h4>
+                      <h4>
+                        <router-link :to="{name: 'Product', params: {id: product.id}}">Products Name Here</router-link>
+                      </h4>
                       <p>
-                        <span class="price">$30.00/час</span>
+                        <span class="price">${{ product.per_hour }}/час</span>
                       </p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati velit,
-                        similique voluptas doloribus assumenda quis libero animi cumque dignissimos
-                        quisquam, quaerat ea laboriosam incidunt ullam.</p>
+                      <p>{{product.description}}</p>
 
                     </div>
                     <!-- Product Content End -->
@@ -134,9 +104,30 @@
 <script>
 import SharitoHeader from "@/components/SharitoHeader";
 import SharitoFooter from "@/components/SharitoFooter";
+
 export default {
   name: "ProductsList",
-  components: {SharitoFooter, SharitoHeader}
+  components: {SharitoFooter, SharitoHeader},
+  data() {
+    return {
+      products: []
+    }
+  },
+
+  async created(){
+    let response = await this.$store.dispatch('getProducts',{page: 1});
+      this.products = response.data;
+  },
+
+  methods: {
+    getPhoto(product) {
+      if (!product.photos || product.photos.length === 0) {
+        return '../img/slider/3.jpg';
+      } else {
+        return product.photos[0];
+      }
+    }
+  }
 }
 </script>
 

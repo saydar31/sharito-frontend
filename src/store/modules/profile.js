@@ -100,6 +100,23 @@ export default {
                     success: false
                 }
             }
+        },
+
+        async getProducts(context, data){
+            try {
+                let response = await rest.doGet(
+                    `/product?page=${data.page}`);
+                return {
+                    data: response,
+                    success: true
+                }
+            } catch (error) {
+                console.log(error);
+                return {
+                    data: error,
+                    success: false
+                }
+            }
         }
     },
     mutations: {
