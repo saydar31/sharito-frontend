@@ -91,7 +91,7 @@ export default {
             commit('LOGOUT');
         },
 
-        async addProduct(context, body){
+        async addProduct(context, body) {
             try {
                 let response = await rest.doPost(
                     `/product`,
@@ -108,7 +108,7 @@ export default {
                 }
             }
         },
-        async getProduct(context, data){
+        async getProduct(context, data) {
             try {
                 let response = await rest.doGet(
                     `/product/${data.id}`);
@@ -125,10 +125,14 @@ export default {
             }
         },
 
-        async getProducts(context, data){
+        async getProducts(context, data) {
+            let searchParam = ''
+            if (!!data.search) {
+                searchParam = '&search=' + rest.encodeSearchURI(data.search)
+            }
             try {
                 let response = await rest.doGet(
-                    `/product?page=${data.page}`);
+                    `/product?page=${data.page}` + searchParam);
                 return {
                     data: response,
                     success: true
@@ -141,7 +145,7 @@ export default {
                 }
             }
         },
-        async createOrder(context, data){
+        async createOrder(context, data) {
             try {
                 let response = await rest.doPost(
                     `/order/${data.id}?from=${data.from}&to=${data.to}`);
@@ -157,7 +161,7 @@ export default {
                 }
             }
         },
-        async getOrders(context, data){
+        async getOrders(context, data) {
             try {
                 let response = await rest.doGet(
                     `/order?mine=${data.me}`);

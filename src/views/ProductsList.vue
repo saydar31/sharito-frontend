@@ -122,7 +122,8 @@ export default {
   },
 
   async created() {
-    let response = await this.$store.dispatch('getProducts', {page: 1});
+    let search = this.$route.query.q;
+    let response = await this.$store.dispatch('getProducts', {page: 1, search: search});
     this.products = response.data.products;
     this.totalCount = response.count;
   },

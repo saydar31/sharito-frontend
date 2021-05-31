@@ -16,8 +16,9 @@
           <div class="col-lg-4 col-md-6 ml-auto mr-auto">
             <div class="search-box-view">
               <form action="#">
-                <input type="text" class="email" placeholder="Search Your Product" name="product">
-                <button type="submit" class="submit"></button>
+                <input v-model.trim="search" type="text" class="email" placeholder="Search Your Product" name="product">
+                <button @click="$router.push({name: 'ProductList', query:{q:search}})"
+                        class="submit"></button>
               </form>
             </div>
           </div>
@@ -63,9 +64,15 @@
                     <a><i class="fa fa-cog"></i></a>
                     <ul class="ht-dropdown">
                       <h5>
-                        <li v-if="showLogin"><router-link :to="{name: 'Login'}">Login</router-link></li>
-                        <li v-show="showLogin"><router-link :to="{name: 'SignUp'}">Register</router-link></li>
-                        <li v-if="showProfile"><router-link :to="{name: 'Profile'}">Account</router-link></li>
+                        <li v-if="showLogin">
+                          <router-link :to="{name: 'Login'}">Login</router-link>
+                        </li>
+                        <li v-show="showLogin">
+                          <router-link :to="{name: 'SignUp'}">Register</router-link>
+                        </li>
+                        <li v-if="showProfile">
+                          <router-link :to="{name: 'Profile'}">Account</router-link>
+                        </li>
                       </h5>
                     </ul>
                   </h3>
@@ -85,6 +92,13 @@
 <script>
 export default {
   name: "SharitoHeader",
+
+  data() {
+    return {
+      search: ''
+    }
+  },
+
   mounted() {
     $(window).on('scroll', function () {
       if ($(this).scrollTop() > 150) {
@@ -95,11 +109,11 @@ export default {
     });
 
   },
-  computed:{
-    showLogin(){
+  computed: {
+    showLogin() {
       return !this.$store.getters.isAuthenticated;
     },
-    showProfile(){
+    showProfile() {
       return !!this.$store.getters.isAuthenticated;
     }
   }

@@ -36,6 +36,7 @@
                     <th class="product-price">Price</th>
                     <th class="product-time">Time</th>
                     <th class="product-subtotal">Total</th>
+                    <th class="product-name">Email</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -50,13 +51,14 @@
                     <td class="product-name"><a href="#">{{ order.product.name }}</a></td>
                     <td class="product-price"><span class="amount">${{ order.product.per_hour }}/hour</span></td>
                     <td class="product-name">
-                      <span class="amount">From</span>
+                      <span class="amount">From </span>
                       <span class="amount">{{ order.order_start }}</span>
                       <br>
-                      <span class="amount">&zwj; To</span>
+                      <span class="amount">&zwj; To </span>
                       <span class="amount">{{ order.order_end }}</span>
                     </td>
                     <td class="product-subtotal">${{ order.price }}</td>
+                    <td class="product-name">{{ order.user.email }}</td>
                   </tr>
                   </tbody>
                 </table>
