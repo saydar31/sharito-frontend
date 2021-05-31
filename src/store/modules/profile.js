@@ -144,7 +144,7 @@ export default {
         async createOrder(context, data){
             try {
                 let response = await rest.doPost(
-                    `/product/${data.id}/order?from=${data.from}&to=${data.to}`);
+                    `/order/${data.id}?from=${data.from}&to=${data.to}`);
                 return {
                     data: response,
                     success: true
@@ -160,7 +160,7 @@ export default {
         async getOrders(context, data){
             try {
                 let response = await rest.doGet(
-                    `/order?me=${data.me}`);
+                    `/order?mine=${data.me}`);
                 return {
                     data: response,
                     success: true

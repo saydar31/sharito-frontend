@@ -41,8 +41,11 @@
                   <tbody>
                   <tr v-for="order in orders">
                     <td class="product-thumbnail">
-                      <a v-if="photoIsPresent(order.product)" href="#"><img :src="getPhoto(order.product)" alt="cart-image"/></a>
-                      <a v-else href="#"><img src="https://opt-1333620.ssl.1c-bitrix-cdn.ru/upload/resize_cache/iblock/7b8/400_400_140cd750bba9870f18aada2478b24840a/7b88b009cf0bb6d8edc6684cbf02076a.jpeg?155255126021537" alt="cart-image"/></a>
+                      <a v-if="photoIsPresent(order.product)" href="#"><img :src="getPhoto(order.product)"
+                                                                            alt="cart-image"/></a>
+                      <a v-else href="#"><img
+                          src="https://opt-1333620.ssl.1c-bitrix-cdn.ru/upload/resize_cache/iblock/7b8/400_400_140cd750bba9870f18aada2478b24840a/7b88b009cf0bb6d8edc6684cbf02076a.jpeg?155255126021537"
+                          alt="cart-image"/></a>
                     </td>
                     <td class="product-name"><a href="#">{{ order.product.name }}</a></td>
                     <td class="product-price"><span class="amount">${{ order.product.per_hour }}/hour</span></td>
@@ -83,35 +86,7 @@ export default {
   mixins: [formater],
   data() {
     return {
-      orders: [
-        {
-          product: {
-            name: 'foo',
-            per_hour: '12.0'
-          },
-          order_start: '27.05.2021 12:00',
-          order_end: '28.05.2021 12:00',
-          price: '12000'
-        },
-        {
-          product: {
-            name: 'foo',
-            per_hour: '12.0'
-          },
-          order_start: '27.05.2021 12:00',
-          order_end: '28.05.2021 12:00',
-          price: '12000'
-        },
-        {
-          product: {
-            name: 'foo',
-            per_hour: '12.0'
-          },
-          order_start: '27.05.2021 12:00',
-          order_end: '28.05.2021 12:00',
-          price: '12000'
-        }
-      ]
+      orders: []
     }
   },
 
@@ -121,10 +96,10 @@ export default {
 
   methods: {
     async getOrders() {
-      // let response = await this.$store.dispatch('getOrders', {me: false});
-      // if (response.success) {
-      //   this.orders = response.data;
-      // }
+      let response = await this.$store.dispatch('getOrders', {me: false});
+      if (response.success) {
+        this.orders = response.data;
+      }
     }
   }
 }

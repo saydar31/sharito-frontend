@@ -47,7 +47,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Password</label>
-                    <input v-model="password" type="text" name="pass" placeholder="Password" id="input-password" class="form-control">
+                    <input v-model="password" type="password" name="pass" placeholder="Password" id="input-password" class="form-control">
                   </div>
                   <p class="lost-password"><a href="#">Forgot password?</a></p>
                   <button @click.prevent="signIn" :disabled="email.length === 0 || password.length === 0" class="return-customer-btn">Login</button>
