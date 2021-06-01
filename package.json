@@ -7,7 +7,8 @@
     "demo": "vue-cli-service build --port 80 --mode demo",
     "serve": "vue-cli-service serve --port 80",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test:dev": "http-server production -p 80 --proxy http://localhost:80?"
   },
   "dependencies": {
     "axios": "^0.21.1",
